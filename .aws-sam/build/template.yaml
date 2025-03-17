@@ -1,0 +1,65 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: FastAPI Application deployed to AWS Lambda using SAM
+Resources:
+  FastApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      PackageType: Image
+      MemorySize: 128
+      Timeout: 30
+      Architectures:
+      - arm64
+      Events:
+        RootPath:
+          Type: Api
+          Properties:
+            Path: /
+            Method: GET
+        GetAllItems:
+          Type: Api
+          Properties:
+            Path: /items/
+            Method: GET
+        GetItemById:
+          Type: Api
+          Properties:
+            Path: /items/{item_id}
+            Method: GET
+        CreateItem:
+          Type: Api
+          Properties:
+            Path: /items/
+            Method: POST
+        UpdateItem:
+          Type: Api
+          Properties:
+            Path: /items/{item_id}
+            Method: PUT
+        DeleteItem:
+          Type: Api
+          Properties:
+            Path: /items/{item_id}
+            Method: DELETE
+        ProxyResource:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+      ImageUri: fastapifunction:fastapi-lambda-v1
+    Metadata:
+      DockerContext: /Users/melodyll/PycharmProjects/fastapi-lambda
+      DockerTag: fastapi-lambda-v1
+      Dockerfile: Dockerfile
+      SamResourceId: FastApiFunction
+Outputs:
+  ApiUrl:
+    Description: API Gateway endpoint URL for Prod stage
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/
+  FastApiFunction:
+    Description: Lambda Function ARN
+    Value:
+      Fn::GetAtt:
+      - FastApiFunction
+      - Arn

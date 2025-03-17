@@ -1,0 +1,18 @@
+digraph INFRA {
+  node [ color = "black", fillcolor = "#E6E6E6", height =1, style = "filled,bold,rounded", fontname = "Arial" ];
+  "SOCKSConnection" [ label = "SOCKSConnection
+(Custom::Connection)", shape =rectangle ];
+  "SOCKSHTTPSConnection" [ label = "SOCKSHTTPSConnection
+(Custom::Connection)", shape =rectangle ];
+  "SOCKSHTTPConnectionPool" [ label = "SOCKSHTTPConnectionPool
+(Custom::ConnectionPool)", shape =rectangle ];
+  "SOCKSHTTPSConnectionPool" [ label = "SOCKSHTTPSConnectionPool
+(Custom::ConnectionPool)", shape =rectangle ];
+  "SOCKSProxyManager" [ label = "SOCKSProxyManager
+(Custom::ProxyManager)", shape =rectangle ];
+  "SOCKSHTTPSConnection" -> "SOCKSConnection";
+  "SOCKSHTTPConnectionPool" -> "SOCKSConnection";
+  "SOCKSHTTPSConnectionPool" -> "SOCKSHTTPSConnection";
+  "SOCKSProxyManager" -> "SOCKSHTTPConnectionPool";
+  "SOCKSProxyManager" -> "SOCKSHTTPSConnectionPool";
+}
