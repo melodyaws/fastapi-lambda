@@ -7,7 +7,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       PackageType: Image
-      #ImageUri: 474668399978.dkr.ecr.us-east-1.amazonaws.com/sam001:latest
+      #ImageUri: account-id.dkr.ecr.us-east-1.amazonaws.com/sam001:latest
       MemorySize: 128
       Timeout: 30
       Architectures:

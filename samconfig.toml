@@ -5,4 +5,4 @@ resolve_s3 = true
 s3_prefix = "fastapi-lambda"
 region = "us-east-1"
 capabilities = "CAPABILITY_IAM"
-image_repository = "FastApiFunction=474668399978.dkr.ecr.us-east-1.amazonaws.com/fastapi-lambda"
+image_repository = "FastApiFunction=account-id.dkr.ecr.us-east-1.amazonaws.com/fastapi-lambda"

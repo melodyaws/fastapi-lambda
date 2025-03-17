@@ -4,14 +4,14 @@ from pydantic import BaseModel
 from typing import Optional, List
 import os
 
-# 初始化 FastAPI 應用
+# Initialize FastAPI application
 app = FastAPI(
     title="FastAPI Lambda Demo",
-    description="使用 FastAPI 和 AWS Lambda 構建的 API 示例",
+    description="API example built with FastAPI and AWS Lambda",
     version="0.1.0",
 )
 
-# 數據模型
+# Data model
 class Item(BaseModel):
     id: Optional[int] = None
     name: str
@@ -19,11 +19,11 @@ class Item(BaseModel):
     price: float
     is_offer: Optional[bool] = None
 
-# 內存數據存儲（示例用途）
+# In-memory data storage (for demonstration purposes）
 items_db = {}
 next_id = 1
 
-# 路由定義
+# Route definitions
 @app.get("/")
 def read_root():
     return {"Hello": "World", "Message": "Welcome to FastAPI on Lambda!"}
